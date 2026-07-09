@@ -269,6 +269,10 @@ jobs:
         with:
           repository: lightninglabs/lnget
           path: lnget
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: lnget/go.mod
       - name: Build lnget
         run: |
           cd lnget
@@ -297,7 +301,7 @@ jobs:
 ### Docker usage
 
 ```dockerfile
-FROM golang:1.22-alpine AS builder
+FROM golang:1.25-alpine AS builder
 WORKDIR /src
 RUN apk add --no-cache git
 RUN git clone https://github.com/lightninglabs/lnget.git .
